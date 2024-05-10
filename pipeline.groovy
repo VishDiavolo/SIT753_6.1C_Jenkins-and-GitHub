@@ -5,6 +5,7 @@ pipeline {
             steps {
                 script {
                     sleep time: 20, unit: 'SECONDS'
+                    //test
                 }
                 echo 'Building the application...'
                 echo "sh 'mvn clean package'"  
