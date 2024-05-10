@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sleep time: 20, unit: 'SECONDS'
+                    sleep time: 2, unit: 'SECONDS'
                 }
                 echo 'Building the application...'
                 echo "sh 'mvn clean package'"  
@@ -81,14 +81,14 @@ pipeline {
         failure {
             echo 'Pipeline failed!'
             emailext subject: 'Pipeline Status - Failure',
-                      body: 'The pipeline failed. Please check the logs for details.',
+                      body: 'The pipeline failed. Please check the logs.',
                       to: 'svishuddha@gmail.com'
         }
     }
 }
 def email(stageName, status) {
     emailext subject: "Pipeline Status - $status: $stageName",
-              body: "The $stageName stage ${status.toLowerCase()}. Please see attached logs for details.",
+              body: "The $stageName stage $status Please see attached logs.",
               to: 'svishuddha@gmail.com',
               replyTo: 'svishuddha@gmail.com',
               attachLog: true,
